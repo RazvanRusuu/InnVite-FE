@@ -26,7 +26,7 @@ export const FormSchema = z.object({
       required_error: "Please select a location.",
     })
     .min(1, "The field could not be empty"),
-  propertyType: z.string(),
+  houseType: z.string(),
   minPrice: z.string(),
   maxPrice: z.string(),
 });
@@ -34,18 +34,18 @@ export const FormSchema = z.object({
 export type FormType = z.infer<typeof FormSchema>;
 
 interface SearchFormProps {
-  locations: PropertyLocation[];
-  propertyTypes: PropertyType[];
+  locations: HouseLocation[];
+  houseTypes: HouseType[];
 }
 
-export function MainSearchForm({ locations, propertyTypes }: SearchFormProps) {
+export function MainSearchForm({ locations, houseTypes }: SearchFormProps) {
   const router = useRouter();
 
   const form = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       location: "",
-      propertyType: "",
+      houseType: "",
       minPrice: "",
       maxPrice: "",
     },
@@ -81,7 +81,7 @@ export function MainSearchForm({ locations, propertyTypes }: SearchFormProps) {
         />
         <FormField
           control={form.control}
-          name="propertyType"
+          name="houseType"
           render={({ field }) => (
             <Select
               field={{ ...field }}

@@ -73,4 +73,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .clip-section {
+    /* border-radius: 10rem 10rem 0 0; */
+  }
 }

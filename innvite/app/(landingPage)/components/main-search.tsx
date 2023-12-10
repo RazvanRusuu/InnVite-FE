@@ -10,7 +10,7 @@ export default async function MainSearch() {
   return (
     <div className="hidden sm:block absolute right-0 bottom-0 w-4/6 backdrop-blur-sm bg-slate-700 bg-opacity-20 rounded-tl-lg">
       <div>
-        <MainSearchForm locations={data} propertyTypes={[]} />
+        <MainSearchForm locations={data} houseTypes={[]} />
       </div>
     </div>
   );

@@ -7,19 +7,19 @@ export default function Socials() {
         href={"/"}
         className="p-1 border-2 border-sm rounded-md inline-block"
       >
-        <Facebook color="#fff" size={24} />
+        <Facebook color="#fff" size={20} />
       </Link>
       <Link
         href={"/"}
         className="p-1 border-2 border-sm rounded-md inline-block"
       >
-        <Instagram color="#fff" size={24} />
+        <Instagram color="#fff" size={20} />
       </Link>
       <Link
         href={"/"}
         className="p-1 border-2 border-sm rounded-md inline-block"
       >
-        <Twitter color="#fff" size={24} />
+        <Twitter color="#fff" size={20} />
       </Link>
     </div>
   );

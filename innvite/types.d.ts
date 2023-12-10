@@ -1,8 +1,8 @@
-type PropertyLocation = {
+type HouseLocation = {
   name: string;
   lat: string;
   lng: string;
 };
-type PropertyType = {
+type HouseType = {
   name: string;
 };
