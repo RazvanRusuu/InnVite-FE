@@ -1,11 +1,12 @@
 import Image from "next/image";
-import Header from "./Header";
-import Socials from "./Socials";
-import MainSearch from "./Search";
+
+import Header from "@/components/ui/Header";
+import Socials from "@/components/ui/Socials";
+import MainSearch from "@/app/(landingPage)/components/MainSearch";
 
 export default function Hero() {
   return (
-    <div className="min-h-screen relative">
+    <section className="min-h-screen relative">
       <div className="top-0 left-0 h-full">
         <Image
           src={"/hero.jpg"}
@@ -18,6 +19,6 @@ export default function Hero() {
       <Header />
       <Socials />
       <MainSearch />
-    </div>
+    </section>
   );
 }
