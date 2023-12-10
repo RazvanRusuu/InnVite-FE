@@ -2,9 +2,9 @@ import Link from "next/link";
 
 import { links } from "@/lib/links";
 
-export default function Navigation() {
+export default function MainNav() {
   return (
-    <nav>
+    <nav className="hidden sm:block">
       <ul className="flex gap-4 self-center">
         {links.map((link) => (
           <li

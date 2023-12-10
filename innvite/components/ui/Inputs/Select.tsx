@@ -21,28 +21,29 @@ import { CheckIcon, ArrowDownNarrowWide } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { FormType } from "@/app/(landingPage)/components/PropertySearchForm";
-import { ControllerRenderProps, UseFormReturn } from "react-hook-form";
+import {
+  ControllerRenderProps,
+  FieldValues,
+  UseFormReturn,
+  useFormContext,
+} from "react-hook-form";
 
-// TODO refractor types for generic cases
-
-type SelectFormType = Pick<FormType, "location" | "propertyType">;
-
-interface FieldComponentProps<TField extends keyof SelectFormType> {
-  form: UseFormReturn<FormType>;
-  fieldName: keyof SelectFormType;
-  values?: PropertyLocation[] | PropertyType[];
-  field: ControllerRenderProps<FormType, TField>;
+interface SelectProps<TForm extends FieldValues> {
+  form: UseFormReturn<TForm>;
+  field: ControllerRenderProps<TForm>;
+  values: Array<{ name: string; [key: string]: any }>;
+  fieldName: string;
   displayName: string;
 }
 
-export default function Select<TField extends keyof SelectFormType>({
-  form,
+export default function Select<TName extends FieldValues>({
   field,
   values,
   fieldName,
   displayName,
-}: FieldComponentProps<TField>) {
+  ...props
+}: SelectProps<TName>) {
+  const { setValue } = useFormContext();
   return (
     <FormItem className="py-6 px-4 flex flex-col xl:border-white">
       <FormLabel className="text-white text-sm uppercase">
@@ -79,7 +80,7 @@ export default function Select<TField extends keyof SelectFormType>({
                   value={el.name}
                   key={el.name}
                   onSelect={() => {
-                    form.setValue(fieldName, el.name);
+                    setValue(fieldName, el.name);
                   }}
                 >
                   {el.name}

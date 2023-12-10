@@ -1,11 +1,12 @@
 import Image from "next/image";
-import Navigation from "../../app/(landingPage)/components/Nav";
+import Navigation from "../../app/(landingPage)/components/main-nav";
 
 import { Button } from "./button";
 import Link from "next/link";
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound, Search } from "lucide-react";
+import { SearchModal } from "./search-modal";
 
-export default function Header() {
+export default async function Header() {
   return (
     <div className="h-16 flex justify-between p-4 z-10 absolute top-0 right-0 bottom-0 left-0 border-b border-slate-400 bg-black bg-opacity-50">
       <div>
@@ -13,6 +14,7 @@ export default function Header() {
       </div>
       <div className="flex gap-10 self-center items-center">
         <Navigation />
+        <SearchModal />
         <Button asChild>
           <Link
             href={"/signup"}

@@ -1,8 +1,8 @@
 import Image from "next/image";
 
-import Header from "@/components/ui/Header";
-import Socials from "@/components/ui/Socials";
-import MainSearch from "@/app/(landingPage)/components/MainSearch";
+import Header from "@/components/ui/header";
+import Socials from "@/components/ui/socials";
+import MainSearch from "@/app/(landingPage)/components/main-search";
 
 export default function Hero() {
   return (

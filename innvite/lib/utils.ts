@@ -1,4 +1,4 @@
-import { formData } from "@/app/(landingPage)/components/PropertySearchForm";
+import { formData } from "@/app/(landingPage)/components/main-search-form";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 

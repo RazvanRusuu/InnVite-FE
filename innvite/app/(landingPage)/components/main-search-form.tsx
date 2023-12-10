@@ -6,7 +6,7 @@ import * as z from "zod";
 
 import React from "react";
 import { useRouter } from "next/navigation";
-import { ArrowBigRight, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { objectToQueryString } from "@/lib/utils";
@@ -17,7 +17,7 @@ import {
   FormItem,
   FormLabel,
 } from "@/components/ui/form";
-import Select from "@/components/ui/Inputs/Select";
+import Select from "@/components/ui/Inputs/select";
 import { Input } from "@/components/ui/input";
 
 export const FormSchema = z.object({
@@ -38,11 +38,9 @@ interface SearchFormProps {
   propertyTypes: PropertyType[];
 }
 
-export function PropertySearchForm({
-  locations,
-  propertyTypes,
-}: SearchFormProps) {
+export function MainSearchForm({ locations, propertyTypes }: SearchFormProps) {
   const router = useRouter();
+
   const form = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -72,8 +70,8 @@ export function PropertySearchForm({
           control={form.control}
           name="location"
           render={({ field }) => (
-            <Select
-              field={field}
+            <Select<FormType>
+              field={{ ...field }}
               fieldName={field.name}
               values={locations}
               form={form}
@@ -86,7 +84,7 @@ export function PropertySearchForm({
           name="propertyType"
           render={({ field }) => (
             <Select
-              field={field}
+              field={{ ...field }}
               fieldName={field.name}
               values={locations}
               form={form}
