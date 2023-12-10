@@ -1,7 +1,16 @@
-export function SingupBtn() {
+import Link from "next/link";
+import { CircleUserRound } from "lucide-react";
+
+export function SingupButton() {
   return (
-    <button className="py-1 px-3 rounded-md bg-white text-black hover:bg-slate-200 font-semibold">
-      Sign up
-    </button>
+    <Link
+      href={"/signup"}
+      className="flex justify-center items-center gap-1 px-2 py-1 bg-slate-900 bg-opacity-50 hover:bg-opacity-80 rounded-sm"
+    >
+      <span className="text-white text-sm mr-2">Sign up</span>
+      <div>
+        <CircleUserRound color="white" size={24} />
+      </div>
+    </Link>
   );
 }

@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Header from "./Header";
+import Socials from "./Socials";
+import MainSearch from "./Search";
 
 export default function Hero() {
   return (
@@ -12,8 +14,10 @@ export default function Hero() {
           fill
         />
       </div>
-      <div className="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-50 z-10"></div>
+      <div className="absolute top-0 right-0 bottom-0 left-0 bg-black opacity-80"></div>
       <Header />
+      <Socials />
+      <MainSearch />
     </div>
   );
 }
