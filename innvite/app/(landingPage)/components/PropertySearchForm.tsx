@@ -6,21 +6,29 @@ import * as z from "zod";
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { ArrowBigRight, ArrowRight } from "lucide-react";
 
-import FieldComponent from "@/components/ui/SelectFormField";
 import { Button } from "@/components/ui/button";
 import { objectToQueryString } from "@/lib/utils";
-import { Form, FormField } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
+import Select from "@/components/ui/Inputs/Select";
+import { Input } from "@/components/ui/input";
 
 export const FormSchema = z.object({
   location: z
     .string({
       required_error: "Please select a location.",
     })
-    .min(1),
+    .min(1, "The field could not be empty"),
   propertyType: z.string(),
-  minPrice: z.number(),
-  maxPrice: z.number(),
+  minPrice: z.string(),
+  maxPrice: z.string(),
 });
 
 export type FormType = z.infer<typeof FormSchema>;
@@ -40,8 +48,8 @@ export function PropertySearchForm({
     defaultValues: {
       location: "",
       propertyType: "",
-      minPrice: 0,
-      maxPrice: 0,
+      minPrice: "",
+      maxPrice: "",
     },
   });
 
@@ -50,20 +58,21 @@ export function PropertySearchForm({
 
     const origin = window.location.origin;
 
-    console.log(data);
-
     const redirectTo = `${origin}/results?${queryString}`;
-    // router.push(redirectTo);
+    router.push(redirectTo);
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="flex items-top">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="flex items-top flex-wrap"
+      >
         <FormField
           control={form.control}
           name="location"
           render={({ field }) => (
-            <FieldComponent
+            <Select
               field={field}
               fieldName={field.name}
               values={locations}
@@ -76,7 +85,7 @@ export function PropertySearchForm({
           control={form.control}
           name="propertyType"
           render={({ field }) => (
-            <FieldComponent
+            <Select
               field={field}
               fieldName={field.name}
               values={locations}
@@ -85,7 +94,52 @@ export function PropertySearchForm({
             />
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="minPrice"
+          render={({ field }) => (
+            <FormItem className="py-6 px-4 flex flex-col xl:border-white">
+              <FormLabel className="text-white text-sm uppercase">
+                Min price
+              </FormLabel>
+              <FormControl>
+                <Input
+                  className="bg-transparent text-white w-[200px] "
+                  placeholder="0"
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="maxPrice"
+          render={({ field }) => (
+            <FormItem className="py-6 px-4 flex flex-col xl:border-white">
+              <FormLabel className="text-white text-sm uppercase">
+                Min price
+              </FormLabel>
+              <FormControl>
+                <Input
+                  className="bg-transparent text-white w-[200px]"
+                  placeholder="0"
+                  {...field}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <div className="py-6 px-4 self-end">
+          <Button
+            className="self-end uppercase flex items-center"
+            variant={"outline"}
+            type="submit"
+          >
+            Submit
+            <ArrowRight color="#333" size={18} />
+          </Button>
+        </div>
       </form>
     </Form>
   );

@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { CheckIcon } from "lucide-react";
+import { CheckIcon, ArrowDownNarrowWide } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -36,7 +36,7 @@ interface FieldComponentProps<TField extends keyof SelectFormType> {
   displayName: string;
 }
 
-export default function FieldComponent<TField extends keyof SelectFormType>({
+export default function Select<TField extends keyof SelectFormType>({
   form,
   field,
   values,
@@ -44,7 +44,7 @@ export default function FieldComponent<TField extends keyof SelectFormType>({
   displayName,
 }: FieldComponentProps<TField>) {
   return (
-    <FormItem className="border-r-2 border-white border-opacity-40 py-6 px-4 flex flex-col">
+    <FormItem className="py-6 px-4 flex flex-col xl:border-white">
       <FormLabel className="text-white text-sm uppercase">
         {displayName}
       </FormLabel>
@@ -62,7 +62,7 @@ export default function FieldComponent<TField extends keyof SelectFormType>({
               {field.value
                 ? values?.find((el) => el.name === field.value)?.name
                 : `Select a ${displayName}`}
-              {/* <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" /> */}
+              <ArrowDownNarrowWide className="ml-2 h-4 w-4 shrink-0 opacity-50" />
             </Button>
           </FormControl>
         </PopoverTrigger>
