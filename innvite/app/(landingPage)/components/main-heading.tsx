@@ -1,7 +1,7 @@
 export default function MainHeading() {
   return (
     <div className="text-center">
-      <h1 className="relative text-white  font-extrabold">
+      <h1 className="relative text-white font-extrabold">
         <span
           className="relative text-8xl tracking-[.2em]
                     bg-[url('/hero.jpg')] 
@@ -26,7 +26,6 @@ export default function MainHeading() {
           Vite
         </span>
       </h1>
-
       <p className="mt-10 text-slate-200 text-2xl">
         Take your renting experience to the new level
       </p>

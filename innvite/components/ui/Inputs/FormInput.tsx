@@ -1,42 +1,40 @@
-import {
-  ControllerRenderProps,
-  FieldValues,
-  UseFormReturn,
-  useFormContext,
-} from "react-hook-form";
-import { useFormField } from "../form";
+import { ControllerRenderProps, FieldValues } from "react-hook-form";
+import { FormMessage, useFormField } from "../form";
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-} from "@/components/ui/form";
+import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "../input";
+import { cn } from "@/lib/utils";
 
-interface IInputProps<TForm extends FieldValues> {
-  form?: UseFormReturn<TForm>;
+type ICustomInputProps<TForm extends FieldValues> = {
   field: ControllerRenderProps<TForm>;
   label: string;
   placeholder?: string;
-}
+  error?: string;
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
 export default function FormInput<TName extends FieldValues>({
   field,
   label,
   placeholder,
-}: IInputProps<TName>) {
+  ...props
+}: ICustomInputProps<TName>) {
+  const { error } = useFormField();
+
   return (
     <FormItem>
       <FormLabel className="text-sm text-muted-foreground">{label}</FormLabel>
       <FormControl>
         <Input
-          className="focus-visible:ring-2 border-gray-300 focus-visible:ring-slate-600"
+          className={`${cn(
+            "focus-visible:ring-2 border-gray-300 focus-visible:ring-slate-600 focus-visible:border-none h-10",
+            error?.message && "ring-1 ring-red-400 focus-visible:ring-red-400"
+          )}`}
           placeholder={placeholder}
           {...field}
+          {...props}
         />
       </FormControl>
+      <FormMessage />
     </FormItem>
   );
 }
